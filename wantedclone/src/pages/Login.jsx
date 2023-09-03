@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "../App.css";
+import OauthLogin from "../components/OauthLogin";
 function Login() {
   const [email, setEmail] = useState("");
   const [isValidEmail, setIsValidEmail] = useState(false);
@@ -10,7 +11,7 @@ function Login() {
   }, [email]);
   return (
     <div className="w-full h-[100vh] flex justify-center items-center bg-Gray01 py-50">
-      <div className="bg-white w-[400px] h-[710px] flex flex-col justify-center px-5">
+      <div className="bg-white w-[400px] h-[843px] flex flex-col justify-center px-5">
         <img
           className="w-[93px] object-cover mx-auto mb-[35px]"
           src="/images/svg.png"
@@ -45,7 +46,8 @@ function Login() {
         <span className="text-[#939393] text-[12px] w-full text-center mb-[15px]">
           또는
         </span>
-        <div className="flex items-center justify-around"></div>
+        {/* SOCIAL LOGIN */}
+        <OauthLogin />
       </div>
     </div>
   );
