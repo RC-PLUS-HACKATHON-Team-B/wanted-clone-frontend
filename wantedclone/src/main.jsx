@@ -7,6 +7,7 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import RedirectURL from "./pages/RedirectURL.jsx";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import SignUp from "./pages/SignUp.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "redirect",
         element: <RedirectURL />,
+      },
+      {
+        path: "signup",
+        element: <SignUp />,
       },
     ],
   },
