@@ -17,9 +17,15 @@ function SignUp() {
   const [name, setName] = useState(""); // 이름 상태
   const [nameError, setNameError] = useState(""); // 이름 유효성 오류 메시지 상태
 
+  // 참고
+  // const [clear, setClear] = useState({
+  //   name: false,
+  //   email: false,
+
+  // })
+
   const handleNameChange = (e) => {
     setName(e.target.value);
-
     const regex = /[\s\W]/;
     if (regex.test(e.target.value)) {
       setNameError("이름에는 공백과 특수문자가 포함될 수 없습니다.");
