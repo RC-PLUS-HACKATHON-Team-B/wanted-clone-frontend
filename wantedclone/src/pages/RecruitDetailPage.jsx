@@ -10,15 +10,30 @@ const RecruitDetailPage = () => {
 
     const handleClickHeart = () => {
         setIsClicked(!isClicked);
+        // 하트 추가하는 통신 코드 구현 필요
     };
 
-    const dummydata = {
-        dummyImageSrcList: ["", "", ""]
-    };
+    const dummyData = {
+        imageSrcList: ["", "", "", "", ""],
+        companyname: "한국앤컴퍼니",
+        companyplace: "경기 • 한국",
+        taglist: ["테스트1", "테스트2", "테스트3", "테스트4", "테스트5"],
+        job_simple_description: "테스트 테스트 테스트",
+        major_task: "테스트테스트테스트",
+        qualification_requirement: "테스트입니다.",
+        preferential_treatment: "testtesttest",
+        benefits_welfare: "test입니다",
+        skill_tag_list: ["테스트6", "테스트7", "테스트8"],
+        duedate: "2023.10.19",
+        workplace: "테스트 테스트 테스트입니다",
+        recommendreward: 500000,
+        applyreward: 500000,
+        heart: 100
+    }
 
 
     // 이미지 배열 length - 1 (4는 테스트 값)
-    const TOTAL_SLIDES = 4;
+    const TOTAL_SLIDES = dummyData.imageSrcList.length - 1;
 
     const NextSlide = () => {
         if (currentSlide >= TOTAL_SLIDES) {
@@ -41,74 +56,63 @@ const RecruitDetailPage = () => {
         slideRef.current.style.transform = `translateX(-${currentSlide * 7}00px)`;
     }, [currentSlide]);
 
-    const containerWidth = 5 * 700;
+    // 이미지 배열 length (5는 테스트 값)
+    const containerWidth = dummyData.imageSrcList.length * 700;
 
     return (
         <div className="RecruitDetailPage">
             <div className='left-container'>
                 <div className='imagecontainer' style={{width: `${containerWidth}px`}} ref={slideRef}>
-                    <div className='imagebox'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='imagebox'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='imagebox'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='imagebox'>
-                        <img src="" alt="" />
-                    </div>
-                    <div className='imagebox'>
-                        <img src="" alt="" />
-                    </div>
+                    {dummyData.imageSrcList.map((it, idx) => {
+                        return (
+                            <div className='imagebox' key={idx}>
+                                <img src={it} alt=""/>
+                            </div>
+                        )
+                    })}
                 </div>
                 <button onClick={PrevSlide} className="prev_button"><svg width="24" height="24" viewBox="0 0 12 12"><path fill="#b5b5b5" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path></svg></button>
                 <button onClick={NextSlide} className='next_button'><svg width="24" height="24" viewBox="0 0 12 12"><path fill="#b5b5b5" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path></svg></button>
                 <div className='jobheader'>
                     <p className='jobname'>{"SAP SCM(CO/FI)"}</p>
                     <div className='companyinfo'>
-                        <p className='companyname'>한국앤컴퍼니</p>
+                        <p className='companyname'>{dummyData.companyname}</p>
                         <div className='vertical_bar'></div>
-                        <p className='companyplace'>경기 • 한국</p>
+                        <p className='companyplace'>{dummyData.companyplace}</p>
                     </div>
                     <div className='taglist'>
-                        <Tag tagtext={"테스트1"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트232231223"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트43123"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
-                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                        {dummyData.taglist.map((it, idx) => (
+                            <Tag  tagtext={it} key={idx} backgroundColor={"#f3f5f8"}/> 
+                        ))}
                     </div>
                 </div>
                 <div className='job_info'>
                     <p className='job_simple_description'>
-                        테스트테스트세트셀ㅇㄴㅇ로ㅓㄴ로ㅓ소ㅓ동ㄹ어님뢰ㅓ
+                        {dummyData.job_simple_description}
                     </p>
                     <div className='job_detail_description'>
                         <div className='major_task'>
                             <p className='option_title'>주요업무</p>
-                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                            <p className='option_info'>{dummyData.major_task}</p>
                         </div>
                         <div className='qualification_requirement'>
                             <p className='option_title'>자격요건</p>
-                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                            <p className='option_info'>{dummyData.qualification_requirement}</p>
                         </div>
                         <div className='preferential_treatment'>
                             <p className='option_title'>우대사항</p>
-                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                            <p className='option_info'>{dummyData.preferential_treatment}</p>
                         </div>
                         <div className='benefits_welfare'>
                             <p className='option_title'>혜택 및 복지</p>
-                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                            <p className='option_info'>{dummyData.benefits_welfare}</p>
                         </div>
                         <div className='require_skill_stack'>
                             <p className='option_title'>기술스택 • 툴</p>
                             <div className='skill_tag_list'>
-                                <Tag tagtext={"IIS"} backgroundColor={"#e4f4ec"}/>
-                                <Tag tagtext={"안녕"} backgroundColor={"#e4f4ec"}/>
+                                {dummyData.skill_tag_list.map((it, idx) => (
+                                    <Tag tagtext={it}key={idx} backgroundColor={"#e4f4ec"}/>
+                                ))}
                             </div>
                         </div>
                     </div>
@@ -117,13 +121,12 @@ const RecruitDetailPage = () => {
                 <div className='job_work_place'>
                     <div className='info_box'>
                         <p className='info_text'>마감일</p>
-                        <p className='info_data'>2023.10.29</p>
+                        <p className='info_data'>{dummyData.duedate}</p>
                     </div>
                     <div className='info_box'>
                         <p className='info_text'>근무지역</p>
-                        <p className='info_data'>테스트 테스트 테스트입니다.</p>
+                        <p className='info_data'>{dummyData.workplace}</p>
                     </div>
-                    <img src='' alt="" />
                 </div>
             </div>
             <div className='right-container'>
@@ -132,11 +135,11 @@ const RecruitDetailPage = () => {
                     <div className='rewardamount'>
                         <div className='reward'>
                             <p className='rewardtarget'>추천인</p>
-                            <p className='rewardmoney'>500,000원</p>
+                            <p className='rewardmoney'>{dummyData.recommendreward}</p>
                         </div>
                         <div className='reward'>
                             <p className='rewardtarget'>지원자</p>
-                            <p className='rewardmoney'>500,000원</p>
+                            <p className='rewardmoney'>{dummyData.applyreward}</p>
                         </div>
                     </div>
                     <button className='bookmarkbutton'>북마크하기</button>
@@ -144,8 +147,9 @@ const RecruitDetailPage = () => {
                     <button className='heartbutton' onClick={handleClickHeart}>
                         {isClicked ? <svg className="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 24 24"><path d="M11.9999 6.49201L13.4848 5.00461C15.5225 2.9634 18.8529 2.9634 20.8905 5.00445C22.9308 7.04707 22.9308 10.3876 20.8928 12.4291L13.4587 19.9397L13.4565 19.9419C13.067 20.332 12.5427 20.5339 11.9999 20.5261C11.4563 20.5339 10.9319 20.3321 10.5402 19.9397L3.10804 12.4311C1.06908 10.3875 1.06908 7.04719 3.10835 5.00445C5.14712 2.96345 8.47614 2.96345 10.5151 5.00461L11.9999 6.49201Z" fill="#f00"></path></svg>
                         :
-                        <svg className="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 24 24"><path d="M11.9999 6.49201L13.4848 5.00461C15.5225 2.9634 18.8529 2.9634 20.8905 5.00445C22.9308 7.04707 22.9308 10.3876 20.8928 12.4291L13.4587 19.9397L13.4565 19.9419C13.067 20.332 12.5427 20.5339 11.9999 20.5261C11.4563 20.5339 10.9319 20.3321 10.5402 19.9397L3.10804 12.4311C1.06908 10.3875 1.06908 7.04719 3.10835 5.00445C5.14712 2.96345 8.47614 2.96345 10.5151 5.00461L11.9999 6.49201Z" fill="#e1e2e3"></path></svg>}
-                        0
+                        <svg className="SvgIcon_SvgIcon__root__svg__DKYBi" viewBox="0 0 24 24"><path d="M11.9999 6.49201L13.4848 5.00461C15.5225 2.9634 18.8529 2.9634 20.8905 5.00445C22.9308 7.04707 22.9308 10.3876 20.8928 12.4291L13.4587 19.9397L13.4565 19.9419C13.067 20.332 12.5427 20.5339 11.9999 20.5261C11.4563 20.5339 10.9319 20.3321 10.5402 19.9397L3.10804 12.4311C1.06908 10.3875 1.06908 7.04719 3.10835 5.00445C5.14712 2.96345 8.47614 2.96345 10.5151 5.00461L11.9999 6.49201Z" fill="#e1e2e3"></path></svg>
+                        }
+                        {dummyData.heart}
                     </button>
                 </div>
                 <div className='predictcontainer'>
