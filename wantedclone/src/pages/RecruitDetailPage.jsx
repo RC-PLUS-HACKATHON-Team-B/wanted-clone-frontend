@@ -12,6 +12,10 @@ const RecruitDetailPage = () => {
         setIsClicked(!isClicked);
     };
 
+    const dummydata = {
+        dummyImageSrcList: ["", "", ""]
+    };
+
 
     // 이미지 배열 length - 1 (4는 테스트 값)
     const TOTAL_SLIDES = 4;
@@ -61,6 +65,66 @@ const RecruitDetailPage = () => {
                 </div>
                 <button onClick={PrevSlide} className="prev_button"><svg width="24" height="24" viewBox="0 0 12 12"><path fill="#b5b5b5" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path></svg></button>
                 <button onClick={NextSlide} className='next_button'><svg width="24" height="24" viewBox="0 0 12 12"><path fill="#b5b5b5" d="M3.345 9.72a.75.75 0 0 0 1.06 1.06l4.25-4.25a.75.75 0 0 0 0-1.06l-4.25-4.25a.75.75 0 0 0-1.06 1.06L7.065 6l-3.72 3.72z"></path></svg></button>
+                <div className='jobheader'>
+                    <p className='jobname'>{"SAP SCM(CO/FI)"}</p>
+                    <div className='companyinfo'>
+                        <p className='companyname'>한국앤컴퍼니</p>
+                        <div className='vertical_bar'></div>
+                        <p className='companyplace'>경기 • 한국</p>
+                    </div>
+                    <div className='taglist'>
+                        <Tag tagtext={"테스트1"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트232231223"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트43123"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                        <Tag tagtext={"#테스트3123123312"} backgroundColor={"#f3f5f8"}/>
+                    </div>
+                </div>
+                <div className='job_info'>
+                    <p className='job_simple_description'>
+                        테스트테스트세트셀ㅇㄴㅇ로ㅓㄴ로ㅓ소ㅓ동ㄹ어님뢰ㅓ
+                    </p>
+                    <div className='job_detail_description'>
+                        <div className='major_task'>
+                            <p className='option_title'>주요업무</p>
+                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                        </div>
+                        <div className='qualification_requirement'>
+                            <p className='option_title'>자격요건</p>
+                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                        </div>
+                        <div className='preferential_treatment'>
+                            <p className='option_title'>우대사항</p>
+                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                        </div>
+                        <div className='benefits_welfare'>
+                            <p className='option_title'>혜택 및 복지</p>
+                            <p className='option_info'>테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스테스트테스트세트스</p>
+                        </div>
+                        <div className='require_skill_stack'>
+                            <p className='option_title'>기술스택 • 툴</p>
+                            <div className='skill_tag_list'>
+                                <Tag tagtext={"IIS"} backgroundColor={"#e4f4ec"}/>
+                                <Tag tagtext={"안녕"} backgroundColor={"#e4f4ec"}/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='horizontal_bar'></div>
+                <div className='job_work_place'>
+                    <div className='info_box'>
+                        <p className='info_text'>마감일</p>
+                        <p className='info_data'>2023.10.29</p>
+                    </div>
+                    <div className='info_box'>
+                        <p className='info_text'>근무지역</p>
+                        <p className='info_data'>테스트 테스트 테스트입니다.</p>
+                    </div>
+                    <img src='' alt="" />
+                </div>
             </div>
             <div className='right-container'>
                 <div className='rewardcontainer'>
@@ -127,5 +191,14 @@ const RecruitDetailPage = () => {
         </div>
     )
 };
+
+export const Tag = ({tagtext, backgroundColor}) => {
+    return (
+        <div className='Tag' style={{backgroundColor: backgroundColor}}>
+            {`${tagtext}`}
+        </div>
+    );
+};
+
 
 export default RecruitDetailPage;
