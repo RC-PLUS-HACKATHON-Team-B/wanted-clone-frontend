@@ -51,3 +51,38 @@
 body {
   font-family: "Pretendard", sans-serif;
 }
+/* 체크박스 기본 디자인 숨기기 */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+}
+
+/* 커스텀 체크박스 배경 */
+input[type="checkbox"]::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* 체크박스가 체크됐을 때의 배경 색상 변경 */
+input[type="checkbox"]:checked::before {
+  background-color: #007bff;
+}
+
+/* 체크 표시 */
+input[type="checkbox"]:checked::after {
+  content: "✓";
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+}
