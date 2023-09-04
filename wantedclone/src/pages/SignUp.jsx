@@ -1,38 +1,15 @@
 import { useLocation } from "react-router-dom";
 import countryTelData from "country-telephone-data";
-import { useEffect, useState } from "react";
+import usePhoneNumberValidation from "../hook/usePhoneNumber";
+import useTimer from "../hook/useTimer";
+import Header from "../components/Header";
 function SignUp() {
   const {
     state: { email },
   } = useLocation();
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isPhoneNumberValid, setIsPhoneNumberValid] = useState(false);
-  const [timer, setTimer] = useState(null);
-  const [showTimer, setShowTimer] = useState(false);
-  useEffect(() => {
-    setIsPhoneNumberValid(phoneNumber.length == 11);
-    console.log(phoneNumber.length);
-  }, [phoneNumber]);
-  useEffect(() => {
-    let timerId;
-    if (showTimer) {
-      let timeLeft = 300; // 5 minutes in seconds
-      timerId = setInterval(() => {
-        timeLeft -= 1;
-        setTimer(
-          `${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(
-            2,
-            "0"
-          )}`
-        );
-        if (timeLeft <= 0) {
-          clearInterval(timerId);
-          setShowTimer(false);
-        }
-      }, 1000);
-    }
-    return () => clearInterval(timerId);
-  }, [showTimer]);
+  const [phoneNumber, setPhoneNumber, isPhoneNumberValid] =
+    usePhoneNumberValidation();
+  const [timer, showTimer, setShowTimer] = useTimer(300);
   const handleRequestCode = () => {
     if (isPhoneNumberValid) {
       setShowTimer(true);
@@ -41,11 +18,7 @@ function SignUp() {
   return (
     <section className="w-full h-[100vh] flex justify-center items-center bg-Gray01 py-50">
       <div className="bg-white w-[400px] h-[843px] flex flex-col justify-start px-5 rounded-md border-[1px] border-gray-300 overflow-scroll relative">
-        <div className="flex justify-between items-center py-5 px-5 mb-[30px]">
-          <span className="text-[17px] text-start lighter">취소</span>
-          <h2 className="text-lg text-center">회원가입</h2>
-          <span>{""}</span>
-        </div>
+        <Header title={"회원가입"} />
         <div className="flex flex-col gap-[9px] mb-[25px]">
           <label htmlFor="email" className="text-sm text-[#888888]">
             이메일
@@ -66,7 +39,7 @@ function SignUp() {
             id="name"
             type="text"
             placeholder="이름을 입력해주세요"
-            className="h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide placeholder:font-light"
+            className="h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] lighter tracking-wide placeholder:font-light"
           />
         </div>
         <div className="flex flex-col gap-[9px]">
@@ -88,7 +61,7 @@ function SignUp() {
               id="number"
               type="tel"
               placeholder="(예시) 01013245768"
-              className="flex-[0.65] h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide placeholder:font-light"
+              className="flex-[0.65] h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] lighter tracking-wide placeholder:font-light"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
             />
@@ -104,17 +77,17 @@ function SignUp() {
 
           <input
             type="text"
-            disabled
+            disabled={!showTimer} // showTimer가 true인 경우에만 활성화됩니다.
             placeholder="인증번호를 입력해주세요"
-            className="mb-[25px] h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide"
+            className="h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide"
           />
           {showTimer && (
             <div className="text-primary text-[14px] flex flex-col">
               <span className="lighter">인증번호가 요청되었습니다.</span>
-              남은 시간: {timer}
+              유효시간: {timer}
             </div>
           )}
-          <div className="flex flex-col gap-[9px] mb-[25px]">
+          <div className="flex flex-col gap-[9px] my-[25px] ">
             <label htmlFor="password" className="text-sm text-[#888888]">
               비밀번호
             </label>
@@ -125,7 +98,6 @@ function SignUp() {
               className="h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide"
             />
             <input
-              id="password"
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요"
               className="h-[50px] px-3 rounded-md border-[1px] border-[#E1E2E3] text-gray-300 lighter tracking-wide"

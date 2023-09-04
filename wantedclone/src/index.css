@@ -5,23 +5,22 @@
   font-family: "Pretendard";
   font-display: fallback;
 
-  src: url("./static/fonts/Pretendard-Regular.otf") format("opentype"),
-    url("./static/fonts/Pretendard-Regular.woff") format("woff"),
-    url("./static/fonts/Pretendard-Regular.ttf") format("truetype");
+  src: url("./fonts/Pretendard-Regular.otf") format("opentype"),
+    url(".fonts/Pretendard-Regular.ttf") format("truetype");
 
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: "lighter";
-  src: url("./static/fonts/Pretendard-Light.woff") format("woff");
+  src: url("./fonts/Pretendard-Light.ttf") format("truetype");
   font-weight: 200;
   font-style: normal;
 }
 /* SemiBold */
 @font-face {
   font-family: "semibolder";
-  src: url("./static/fonts/Pretendard-SemiBold.woff") format("woff");
+  src: url("/fonts/Pretendard-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
@@ -29,7 +28,7 @@
 /* Bold */
 @font-face {
   font-family: "bolder";
-  src: url("./static/fonts/Pretendard-Bold.woff") format("woff");
+  src: url("./fonts/Pretendard-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
