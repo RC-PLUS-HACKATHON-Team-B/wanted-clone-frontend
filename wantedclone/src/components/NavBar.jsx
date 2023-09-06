@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { AiOutlineSearch } from "react-icons/ai";
+import { useNavigate } from "react-router-dom";
 
 function NavBar() {
   const [selectedNav, setSelectedNav] = useState(""); // 선택된 항목을 추적하는 상태
@@ -12,10 +13,14 @@ function NavBar() {
     "프리랜서",
     "AI 합격예측",
   ];
-
+  const navigate = useNavigate();
+  const handleClick = (name) => {
+    navigate("/recruit");
+    setSelectedNav(name);
+  };
   return (
     <section className="flex items-center h-[50px] justify-between border-b-[1.5px] py-4">
-      <div className="flex justify-between items-center max-w-screen-xl w-full mx-auto">
+      <div className="flex justify-between items-center max-w-screen-lg w-full mx-auto">
         <div className="h-[25px] flex items-center gap-2 ">
           <FiMenu className="" />
           <img
@@ -29,9 +34,9 @@ function NavBar() {
             <li
               className={`p-[15px] py-[12px] cursor-pointer border-b-2 transition-all ease-in-out ${
                 selectedNav === name ? " border-primary" : "border-transparent"
-              }`} // 조건부 스타일링
+              }`}
               key={name}
-              onClick={() => setSelectedNav(name)} // 항목 클릭 시 상태 업데이트
+              onClick={() => handleClick(name)}
             >
               {name}
             </li>
